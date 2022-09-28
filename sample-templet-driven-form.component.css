@@ -1,0 +1,44 @@
+#maindiv {
+  background-color: rgb(104, 202, 178);
+
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+b {
+  margin-top: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(17, 66, 48);
+  margin-left: 140px;
+}
+
+input[type="radio"] {
+  margin: 0 10px 0 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#btnbuy,#btnreset {
+  border-radius: 12px;
+  /* padding: 10px 24px; */
+  background-color: rgb(17, 66, 48);
+  color: aliceblue;
+  margin-left: 90PX;
+}
+
+#controlgroup {
+  border: 5px;
+  border-radius: 50px;
+  border-color: rgb(17, 66, 48);
+}
+
+#img {
+  width: 30px;
+  height: 20px;
+}
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+  box-shadow: 0 0 13px #ff000021;
+}

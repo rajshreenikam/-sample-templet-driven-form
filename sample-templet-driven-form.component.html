@@ -1,0 +1,122 @@
+<!-- <p>sample-templet-driven-form works!</p> -->
+<div class="container mt-3">
+  <div class="row justify-content-center">
+
+    <div class="col-md-5 text-left rounded shadow py-3" id="maindiv">
+      <form #myForm="ngForm" (ngSubmit)="OnSubmit(myForm)">
+        <h4><b>Online Order</b></h4>
+
+        <fieldset class="border p-2">
+          <legend class="float-none w-auto p-2">
+            <h6> Personal Information </h6>
+          </legend>
+          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="name"
+            placeholder="Enter Your Name" required>
+          <span *ngIf="name"><small>Your name is: {{name}} </small></span>
+
+          <input type="text" class="form-control" id="email" email #email="ngModel" name="email" ngModel
+            placeholder="Enter email address" required (blur)="checkEmail(email)">
+          <small *ngIf="isEmailValid">Enetr valid mail id</small>
+          <!-- pattern=".+@codemind.com" -->
+          <!-- <small class="text-danger" *ngIf="!email.valid && email.touched">Enter valid email_id- domain name should be
+            codemind.com</small> -->
+
+
+          <input type="tel" class="form-control" id="tel" name="tel" ngModel placeholder="Enter 10 digit mobile number"
+            pattern="[0-9]{10}" required>
+        </fieldset>
+
+
+        <fieldset class="border p-2">
+          <legend class="float-none w-auto p-2">
+            <h6> Address </h6>
+          </legend>
+          <textarea class="col-md-12 text-left rounded shadow py-3" required placeholder="Enter Address" ngModel
+            name="address" id="address">
+          </textarea>
+
+          <input type="number" class="form-control" id="postalcode" name="postalcode" ngModel
+            placeholder="Enter Postal Code" required>
+
+          <select name="country" id="country" class="form-control" [(ngModel)]="countryid">
+            <option *ngFor="let country of countries" [value]="country.name">{{country.name}} </option>
+          </select>
+        </fieldset>
+
+        <fieldset class="border p-2">
+          <legend class="float-none w-auto p-2">
+            <h6> Card Details </h6>
+          </legend>
+
+          <!-- <input type="radio" name="card" class="cardVisa" value="cardVisa" ngModel>
+          <img src="../../assets/images/visaimage.png" id="img" alt="cardVisa">
+          <label>VISA</label>
+          <input type="radio" name="card" class="cardMaster" value="cardMaster" ngModel>
+          <img src="../../assets/images/mastercardimg.png" id="img" alt="cardMaster">
+          <label>MasterCard</label>
+          <input type="radio" name="card" class="cardRupay" value="cardRupay" ngModel>
+          <img src="../../assets/images/rupayimage.png" id="img" alt="cardRupay">
+          <label>Rupay</label> -->
+
+          <!--  adding radio button options dynamically -->
+          <label>Cards-</label><br>
+          <div class="form-group" *ngFor="let card of cards">
+            <input type="radio" name="card" id="{{card.id}}" value="{{card.cardname}}" [ngModel]="defaultCard"
+              class="custom-control custom-radio">
+            <label for="{{card.id}}">{{card.cardname}}</label>
+          </div>
+
+          <input type="number" class="form-control" id="cardno" name="cardno" ngModel placeholder="Enter Card Number"
+            required>
+
+          <input type="text" class="form-control" id="securitycode" name="securitycode" ngModel
+            placeholder="Enter Security code" required>
+
+          <input type="text" class="form-control" id="nameoncard" name="nameoncard" ngModel placeholder="Name on card"
+            required>
+        </fieldset>
+
+        <button type="submit" id="btnbuy" class="btn mt-2" [disabled]="!myForm.valid" (click)="show()">BUY IT</button>
+        <!-- <button type="reset" id="btnreset" class="btn mt-2">RESET</button> -->
+
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center mt-2" *ngIf="data">
+  <h4 class="row justify-content-center">Online order details</h4>
+  <table class="table table-striped table-bordered">
+    <thead style="background-color:black; color:white;">
+      <tr>
+        <th> username</th>
+        <th> email</th>
+        <th> tel</th>
+        <th> address</th>
+        <th> postal code</th>
+        <th> country</th>
+        <th> card</th>
+        <th> card no</th>
+        <th>security code</th>
+        <th>name on card</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{formData.username}}</td>
+        <td>{{formData.email}}</td>
+        <td>{{formData.tel}}</td>
+        <td>{{formData.address}}</td>
+        <td>{{formData.postalcode}}</td>
+        <td>{{formData.country}}</td>
+        <td>{{formData.card}}</td>
+        <td>{{formData.cardno}}</td>
+        <td>{{formData.securitycode}}</td>
+        <td>{{formData.nameoncard}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
